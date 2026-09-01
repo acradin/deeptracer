@@ -1,0 +1,32 @@
+[project]
+name = "deeptracer"
+version = "0.1.0"
+description = "Semantic debugger for AI agent failures"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+]
+
+[project.scripts]
+deeptracer = "deeptracer.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest]
+minversion = "9.0"
+testpaths = ["tests"]
+strict_markers = true
+markers = [
+    "slow: long-running tests (deselect with -m \"not slow\")",
+    "integration: CLI, daemon, HTTP server, or live agent logs",
+]

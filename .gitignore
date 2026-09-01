@@ -1,0 +1,52 @@
+# Internal design docs (keep local)
+deeptracer-DESIGN.md
+DESIGN.md
+*-DESIGN.md
+
+# Local DeepTracer runtime (analysis cache, pid)
+.deeptracer/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+
+# Test / lint / type
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Frontend
+node_modules/
+web/dist/
+web/.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors
+.idea/
+*.swp
+*.swo
+*~
+
+# Agent
+.cursor/
