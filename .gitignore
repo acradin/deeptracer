@@ -34,8 +34,9 @@ htmlcov/
 
 # Frontend
 node_modules/
-web/dist/
-web/.vite/
+src/deeptracer/web/node_modules/
+src/deeptracer/web/dist/
+src/deeptracer/web/.vite/
 
 # OS
 .DS_Store

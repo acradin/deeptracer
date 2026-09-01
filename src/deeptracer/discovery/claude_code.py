@@ -27,13 +27,12 @@ def default_claude_config_dir() -> Path:
     return Path.home() / ".claude"
 
 
-def claude_projects_roots(*, require_existing: bool = True) -> list[Path]:
+def claude_projects_roots() -> list[Path]:
     """
-    Auto-detect Claude Code `projects` directories.
+    Auto-detect Claude Code `projects` directories that exist on disk.
 
     Args:
-        require_existing: If True, skip paths that are not directories.
-            False keeps candidates so the CLI can show where it looked.
+        None
 
     Returns:
         Unique paths, CLAUDE_CONFIG_DIR/projects first when that env is set.
@@ -58,7 +57,7 @@ def claude_projects_roots(*, require_existing: bool = True) -> list[Path]:
             key = path
         if key in unique:
             continue
-        if require_existing and not path.is_dir():
+        if not path.is_dir():
             continue
         unique[key] = path
     return list(unique.values())

@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
+
+:root {
+  color-scheme: dark;
+  --bg: #07080a;
+  --bg-chrome: #050506;
+  --bg-node: #12141a;
+  --line: #2a2f38;
+  --text: #e8eaed;
+  --muted: #8b939e;
+  --accent: #3a7aff;
+  --fail: #e05656;
+  --space: 8px;
+  --sans: "IBM Plex Sans", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.4;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--space) * 2);
+  padding: calc(var(--space) * 2) calc(var(--space) * 3);
+  background: #000000;
+  border-bottom: 1px solid var(--line);
+}
+
+.mark {
+  margin: 0;
+  line-height: 0;
+}
+
+.logo {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+main {
+  padding: calc(var(--space) * 3);
+  max-width: 1040px;
+}
+
+.banner {
+  margin: 0 0 calc(var(--space) * 3);
+  padding: 0 0 calc(var(--space) * 2);
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.list-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: calc(var(--space) * 2);
+  margin: 0 0 var(--space);
+}
+
+.count {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.empty,
+.error,
+.loading {
+  margin: calc(var(--space) * 3) 0;
+  color: var(--muted);
+}
+
+.error {
+  color: var(--fail);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: var(--space) calc(var(--space) * 1.5);
+  font-size: 13px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg);
+}
+
+tbody tr:hover td {
+  background: var(--bg-node);
+}
+
+.id,
+.when,
+.size,
+.path {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.path {
+  margin-top: 4px;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.project {
+  font-weight: 500;
+}
+
+.size,
+.when {
+  white-space: nowrap;
+  color: var(--muted);
+}

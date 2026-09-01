@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>deeptracer</title>
+    <link rel="stylesheet" href="/static/picker.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="mark">
+        <img
+          class="logo"
+          src="/static/logo.png"
+          alt="deeptracer"
+          width="1233"
+          height="229"
+        />
+      </h1>
+      <p class="kicker">127.0.0.1 · local</p>
+    </header>
+    <main>
+      <p class="banner">
+        Agent logs stay on this machine. This page lists Claude Code sessions.
+        The causal graph is not wired yet.
+      </p>
+      <div id="root" class="loading">Loading sessions…</div>
+    </main>
+
+    <template id="tpl-empty">
+      <div class="empty">
+        <p>No Claude Code sessions found.</p>
+      </div>
+    </template>
+
+    <template id="tpl-list">
+      <div>
+        <div class="list-head">
+          <p class="kicker">Claude Code sessions</p>
+          <span class="count"></span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Session ID</th>
+              <th>Project</th>
+              <th>Modified</th>
+              <th>Size</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </template>
+
+    <template id="tpl-row">
+      <tr>
+        <td class="id"></td>
+        <td>
+          <span class="project"></span>
+          <div class="path"></div>
+        </td>
+        <td class="when"></td>
+        <td class="size"></td>
+      </tr>
+    </template>
+
+    <script src="/static/picker.js"></script>
+  </body>
+</html>

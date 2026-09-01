@@ -7,12 +7,14 @@ license = { file = "LICENSE" }
 requires-python = ">=3.11"
 dependencies = [
     "click>=8.1",
-    "rich>=13.0",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=9.0",
+    "httpx>=0.27",
 ]
 
 [project.scripts]
@@ -21,6 +23,9 @@ deeptracer = "deeptracer.cli:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/deeptracer/web/static" = "deeptracer/web/static"
 
 [tool.pytest]
 minversion = "9.0"

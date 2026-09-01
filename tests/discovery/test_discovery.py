@@ -75,17 +75,14 @@ def test_roots_use_claude_config_dir(
     assert [path.resolve() for path in roots] == [custom.resolve()]
 
 
-def test_roots_keep_missing_candidates_when_not_required(
+def test_roots_skip_missing_home(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
-    """require_existing=False still returns planned paths that are not on disk yet."""
+    """A missing ~/.claude/projects is not a scan root."""
     missing_home = tmp_path / "no-home" / ".claude"
     monkeypatch.delenv("CLAUDE_CONFIG_DIR", raising=False)
     monkeypatch.setattr(
         "deeptracer.discovery.claude_code.default_claude_config_dir",
         lambda: missing_home,
     )
-    existing = claude_projects_roots(require_existing=True)
-    planned = claude_projects_roots(require_existing=False)
-    assert existing == []
-    assert planned == [missing_home / "projects"]
+    assert claude_projects_roots() == []

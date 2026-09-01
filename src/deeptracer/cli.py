@@ -3,11 +3,9 @@ from __future__ import annotations
 import sys
 
 import click
-from rich.console import Console
-from rich.table import Table
 
 from deeptracer import __version__
-from deeptracer.discovery import claude_projects_roots, discover_claude_code_sessions
+from deeptracer.web.config import DEFAULT_PORT
 
 
 def _configure_stdio() -> None:
@@ -61,34 +59,13 @@ def status() -> None:
 
 
 @cli.command()
-def serve() -> None:
+@click.option("--port", default=DEFAULT_PORT, show_default=True, type=int)
+@click.option("--open/--no-open", "open_browser", default=True, show_default=True)
+def serve(port: int, open_browser: bool) -> None:
     """Run the local web UI in the foreground."""
-    _not_implemented("serve")
+    from deeptracer.web.server import run_foreground
 
-
-@cli.command("list")
-def list_sessions() -> None:
-    """List discovered agent sessions."""
-    sessions = discover_claude_code_sessions()
-    console = Console()
-    if not sessions:
-        looked = claude_projects_roots(require_existing=False)
-        locations = "\n".join(f"  {path}" for path in looked)
-        console.print("No Claude Code sessions found. Looked in:")
-        console.print(locations)
-        return
-
-    table = Table(title=f"Claude Code sessions ({len(sessions)})")
-    table.add_column("Session ID", no_wrap=True)
-    table.add_column("Project")
-    table.add_column("Modified", no_wrap=True)
-    for session in sessions:
-        table.add_row(
-            session.session_id,
-            session.project_label,
-            session.modified_at.strftime("%Y-%m-%d %H:%M"),
-        )
-    console.print(table)
+    run_foreground(port=port, open_browser=open_browser)
 
 
 @cli.command()
